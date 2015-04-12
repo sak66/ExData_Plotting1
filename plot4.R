@@ -1,5 +1,5 @@
 #
-# Name: plot3.R
+# Name: plot4.R
 # Date: 12/04/15
 # 
 # Purpose:  This was written for the Coursera - Exploratory Data Analysis
@@ -9,7 +9,7 @@
 #           Using the data set obtained from: https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip 
 #           
 #           1. Read in the data set.
-#           2. Produce plot energy sub metering from thursday to Saturday between the dates 2007-02-01 and 2007-02-02.
+#           2. Produce plot a number of graphs from thursday to Saturday between the dates 2007-02-01 and 2007-02-02.
 #
 # 
 #
@@ -27,14 +27,29 @@ hpc <- hpc[hpc$Date %in% c('1/2/2007', '2/2/2007'),]
 hpc <- within(hpc, { Timestamp=as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %H:%M:%S") })
 
 # Prepare the PNG device
-png(filename = "plot3.png",
+png(filename = "plot4.png",
     width = 480, height = 480, units = "px", pointsize = 12, bg = "white", type = "quartz")
 
-# Prepare Plot3  
+# Prepare Plots
+par(mfrow=c(2,2))
+
+# 1st Plot
+
+plot(hpc$Timestamp,hpc$Global_active_power,ylab="Global Active Power", xlab="",  type="l")
+
+# 2d Plot
+
+plot(hpc$Timestamp,hpc$Voltage,ylab="Voltage", xlab="",  type="l")
+
+# 3d Plot
 plot(hpc$Timestamp,hpc$Sub_metering_1,ylab="Energy sub metering", xlab="",  type="l")
 lines(hpc$Timestamp,hpc$Sub_metering_2, type="l",col="red")
 lines(hpc$Timestamp,hpc$Sub_metering_3, type="l",col="blue")
-legend(x = "topright",inset = 0, c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=c(1,1,1),lwd=c(2.5,2.5,2.5),col=c("black","red","blue"))
+legend(x = "topright",bty="n",inset = 0, c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=c(1,1,1),lwd=c(2.5,2.5,2.5),col=c("black","red","blue"))
+
+# 4th Plot
+
+plot(hpc$Timestamp,hpc$Global_reactive_power,ylab="Global_reactive_power", xlab="",  type="l")
 
 # shut down decice (close png file)
 dev.off()
