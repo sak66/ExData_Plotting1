@@ -1,5 +1,5 @@
 #
-# Name: plot2.R
+# Name: plot3.R
 # Date: 12/04/15
 # 
 # Purpose:  This was written for the Coursera - Exploratory Data Analysis
@@ -11,7 +11,7 @@
 #           1. Read in the data set.
 #           2. Produce plot energy sub metering from thursday to Saturday between the dates 2007-02-01 and 2007-02-02.
 #
-# Note: Global_active_power: household global minute-averaged active power (in kilowatt)
+# 
 #
 # Set working directory
 setwd("/Users/stan/Development/EDA/ExData_Plotting1")
@@ -27,11 +27,15 @@ hpc <- hpc[hpc$Date %in% c('1/2/2007', '2/2/2007'),]
 hpc <- within(hpc, { Timestamp=as.POSIXct(paste(Date, Time), format = "%d/%m/%Y %H:%M:%S") })
 
 # Prepare the PNG device
-png(filename = "plot2.png",
+png(filename = "plot3.png",
     width = 480, height = 480, units = "px", pointsize = 12, bg = "white", type = "quartz")
 
 # Prepare Plot2  
-plot(hpc$Timestamp,hpc$Global_active_power,ylab="Global Active Power (kilowatts)", xlab="",  type="l")
+plot(hpc$Timestamp,hpc$Sub_metering_1,ylab="Energy sub metering", xlab="",  type="l")
+lines(hpc$Timestamp,hpc$Sub_metering_2, type="l",col="red")
+lines(hpc$Timestamp,hpc$Sub_metering_3, type="l",col="blue")
+legend(x = "topright",inset = 0, c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=c(1,1,1),lwd=c(2.5,2.5,2.5),col=c("black","red","blue"))
 
 # shut down decice (close png file)
 dev.off()
+
