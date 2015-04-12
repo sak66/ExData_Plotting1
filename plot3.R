@@ -1,6 +1,6 @@
 #
 # Name: plot3.R
-# Date: 12/04/15
+# Date: 12/04/15 
 # 
 # Purpose:  This was written for the Coursera - Exploratory Data Analysis
 #

@@ -11,7 +11,7 @@
 #           1. Read in the data set.
 #           2. Produce plot a number of graphs from thursday to Saturday between the dates 2007-02-01 and 2007-02-02.
 #
-# 
+#  
 #
 # Set working directory
 setwd("/Users/stan/Development/EDA/ExData_Plotting1")
